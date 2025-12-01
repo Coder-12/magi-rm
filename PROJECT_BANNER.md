@@ -484,14 +484,14 @@ If you use MAGI-RM in your research or applications, please cite:
 **Aklesh Mishra** - Lead Research Engineer & Architect
 
 - 📧 Email: aklesh.mishra@example.com
-- 💼 LinkedIn: [linkedin.com/in/akleshmishra](https://linkedin.com/in/akleshmishra)
-- 🐙 GitHub: [@Coder-12](https://github.com/Coder-12)
-  - 🐦 Twitter: [@iminevitable10](https://twitter.com/iminevitable10)
+- 💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
+- 🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)
 
 ### Get Support
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/Coder-12/magi-rm/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/Coder-12/magi-rm/discussions)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/yourusername/magi-rm/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/magi-rm/discussions)
 - 📧 **Email**: For private inquiries or collaborations
 - 🔒 **Security**: security@yourproject.com for security issues
 
@@ -532,7 +532,7 @@ We thank the open-source community for:
 
 **⭐ If you find this project useful, please star it on GitHub! ⭐**
 
-[Report Bug](https://github.com/Coder-12/magi-rm/issues) • [Request Feature](https://github.com/yourusername/magi-rm/issues) • [Ask Question](https://github.com/yourusername/magi-rm/discussions)
+[Report Bug](https://github.com/yourusername/magi-rm/issues) • [Request Feature](https://github.com/yourusername/magi-rm/issues) • [Ask Question](https://github.com/yourusername/magi-rm/discussions)
 
 ---
 
