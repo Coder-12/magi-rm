@@ -282,7 +282,7 @@ Contributions are welcome! Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for
 ## 📞 Contact & Acknowledgments
 
 **Lead Developer:** Aklesh Mishra  
-**Contact:** Via [GitHub profile](https://github.com/yourusername)
+**Contact:** Via [GitHub profile](https://github.com/Coder-12)
 
 **Acknowledgments:**  
 This work builds on excellent open-source foundations:

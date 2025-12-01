@@ -304,9 +304,9 @@ For the GSM8K dataset:
 
 For questions, bug reports, or collaboration inquiries:
 
-- **GitHub Issues**: [github.com/yourusername/magi-rm/issues](https://github.com/yourusername/magi-rm/issues)
-- **GitHub Discussions**: [github.com/yourusername/magi-rm/discussions](https://github.com/yourusername/magi-rm/discussions)
-- **Email**: aklesh.mishra@example.com
+- **GitHub Issues**: [github.com/Coder-12/magi-rm/issues](https://github.com/Coder-12/magi-rm/issues)
+- **GitHub Discussions**: [github.com/Coder-12/magi-rm/discussions](https://github.com/Coder-12/magi-rm/discussions)
+- **Email**: [akleshmishra7@gmail.com](akleshmishra7@gmail.com)
 - **Research Inquiries**: For academic collaboration or research partnerships
 
 ## Changelog

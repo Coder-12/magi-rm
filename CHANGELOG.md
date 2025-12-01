@@ -294,15 +294,15 @@ When submitting a pull request, update the `[Unreleased]` section with your chan
 
 ## Links
 
-- **Repository**: [github.com/yourusername/magi-rm](https://github.com/yourusername/magi-rm)
-- **Issues**: [github.com/yourusername/magi-rm/issues](https://github.com/yourusername/magi-rm/issues)
-- **Discussions**: [github.com/yourusername/magi-rm/discussions](https://github.com/yourusername/magi-rm/discussions)
-- **Releases**: [github.com/yourusername/magi-rm/releases](https://github.com/yourusername/magi-rm/releases)
+- **Repository**: [github.com/Coder-12/magi-rm](https://github.com/Coder-12/magi-rm)
+- **Issues**: [github.com/Coder-12/magi-rm/issues](https://github.com/Coder-12/magi-rm/issues)
+- **Discussions**: [github.com/Coder-12/magi-rm/discussions](https://github.com/Coder-12/magi-rm/discussions)
+- **Releases**: [github.com/Coder-12/magi-rm/releases](https://github.com/Coder-12/magi-rm/releases)
 - **Documentation**: [docs/](docs/)
 
 ---
 
-**Questions about releases?** Open a [discussion](https://github.com/yourusername/magi-rm/discussions) or check existing [release notes](https://github.com/yourusername/magi-rm/releases).
+**Questions about releases?** Open a [discussion](https://github.com/Coder-12/magi-rm/discussions) or check existing [release notes](https://github.com/yourusername/magi-rm/releases).
 
-[Unreleased]: https://github.com/yourusername/magi-rm/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/yourusername/magi-rm/releases/tag/v1.0.0
+[Unreleased]: https://github.com/Coder-12/magi-rm/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Coder-12/magi-rm/releases/tag/v1.0.0

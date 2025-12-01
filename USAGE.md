@@ -873,8 +873,8 @@ model = DDP(
 
 ### Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/magi-rm/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/magi-rm/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Coder-12/magi-rm/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Coder-12/magi-rm/discussions)
 - **Email**: aklesh.mishra@example.com
 
 ---
