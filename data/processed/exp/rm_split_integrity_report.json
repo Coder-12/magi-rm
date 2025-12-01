@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-10-31T12:56:37.839088+00:00",
+  "overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "prm": {
+    "train": {
+      "num_records": 4672,
+      "mean": 0.7914444511345757,
+      "stdev": 0.18233137202164953,
+      "entropy": 1.6317504425939537
+    },
+    "val": {
+      "num_records": 622,
+      "mean": 0.8147081636465192,
+      "stdev": 0.1691509146867925,
+      "entropy": 1.487999439601929
+    },
+    "test": {
+      "num_records": 507,
+      "mean": 0.7795681113442885,
+      "stdev": 0.18892274643332865,
+      "entropy": 1.6959775183315893
+    }
+  },
+  "orm": {
+    "train": {
+      "num_records": 4672,
+      "ratio": 0.7497859589041096
+    },
+    "val": {
+      "num_records": 622,
+      "ratio": 0.797427652733119
+    },
+    "test": {
+      "num_records": 507,
+      "ratio": 0.7199211045364892
+    }
+  },
+  "similarity_stats": {
+    "train_val": {
+      "pearson": 0.9887,
+      "ks_pvalue": 0.0008
+    },
+    "train_test": {
+      "pearson": 0.9957,
+      "ks_pvalue": 0.127
+    },
+    "val_test": {
+      "pearson": 0.986,
+      "ks_pvalue": 0.0015
+    }
+  },
+  "integrity_pass": false
+}

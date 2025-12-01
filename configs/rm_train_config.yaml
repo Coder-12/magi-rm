@@ -1,0 +1,93 @@
+#%%writefile configs/rm_train_config.yaml
+# Variant A: Kaggle-friendly RM training (freeze base + train heads / LoRA)
+# Use this on 2x T4. Trains small #parameters (heads or LoRA adapters).
+run_name: "opt-magicore-kaggle-rm-v1"
+seed: 12345
+precision: fp16            # use mixed precision
+device: cuda
+use_deepspeed: false
+use_accelerate: true       # use accelerate for multi-GPU on Kaggle (2xT4)
+
+# MODEL / TOKENIZER
+base_model: "../opt1p3b_fp16"   # WARNING: 6.7B likely doesn't fit full-finetune on 2xT4.
+tokenizer_name: "../opt1p3b_fp16"
+freeze_base: true         # IMPORTANT: freeze weights; only train heads/LoRA
+use_lora: false            # recommended: train LoRA adapters for base model (low GPU memory)
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules: ["q_proj","v_proj","k_proj","o_proj","down_proj","up_proj"]  # typical targets; adapt if needed
+
+# DATA
+data:
+  train_prm_path: "data/processed/confident/prm_train.jsonl"
+  train_orm_path: "data/processed/orm_train.jsonl"
+  val_prm_path: "data/processed/confident/prm_val.jsonl"
+  val_orm_path: "data/processed/orm_val.jsonl"
+  test_prm_path: "data/processed/prm_test.jsonl"  # Added for GSM8K test eval
+  test_orm_path: "data/processed/orm_test.jsonl"
+  tokenizer_name: "../opt1p3b_fp16"
+  max_length: 512
+  max_steps: 15
+
+# TRAINING
+train:
+  epochs: 6                         # small dataset -> moderate epochs
+  max_train_steps: null             # set to null to use epochs
+  per_device_batch_size: 4          # per GPU batch size (2 on T4 is reasonable with heads/LoRA)
+  gradient_accumulation_steps: 8    # effective_batch = per_device_batch_size * gaccum * num_gpus
+  effective_batch_size: 32   # computed for clarity: bs_per_gpu * accum * num_gpus = 32
+  eval_batch_size: 4
+  early_stop_patience: 4
+  seed: 12345
+  use_ema: true
+  ema_decay: 0.999
+  resume_from: null
+  resume_optimizer: false
+  log_grad_norm: false
+  torch_compile: false
+  ema_update_every: 1
+
+# OPTIMIZER & SCHEDULER
+optim:
+  optimizer: "AdamW"
+  lr: 5e-5               # for LoRA/heads this is safe; lower for full base finetune
+  weight_decay: 0.01
+  betas: [0.9, 0.95]
+  eps: 1e-8
+  max_grad_norm: 1.0
+
+sched:
+  scheduler: "cosine"    # warmup + cosine decay
+  warmup_steps: 300
+  lr_min_ratio: 0.01
+
+# LOSSES / WEIGHTS (hybrid / conservative defaults)
+loss_weights:
+  lambda_orm: 1.0
+  lambda_prm_step: 0.5 # Up: Better step supervision (per ORM/PRM studies)
+  lambda_prm_mean: 0.0
+  lambda_prm_prod: 0.3 # Down: Reduces noise amplification
+  lambda_consistency: 0.1
+
+# LOGGING / CHECKPOINTS
+logging:
+  tb_every_steps: 50
+  val_every_steps: 200
+  save_every_steps: 1000
+  run_dir: "runs"
+  metrics_jsonl: true
+  csv_log: true
+
+# SAVE / CHECKPOINT (keep small number for Kaggle)
+checkpoint:
+  keep_last_k: 1
+  save_optimizer: false    # skip optimizer state to save disk (optional)
+  save_dtype: float16
+
+# DEBUG / MISC
+mixed_precision: fp16
+gradient_checkpointing: True  # optional; enable if memory still tight
+num_workers: 0
+precision_backend: "amp"

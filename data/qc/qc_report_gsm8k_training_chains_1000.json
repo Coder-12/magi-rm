@@ -1,0 +1,12 @@
+{
+  "file": "data/collected/gsm8k_training_chains_1000.jsonl",
+  "timestamp": "2025-10-15T07:08:49.701646Z",
+  "avg_chains_per_question": 6,
+  "avg_steps_per_chain": 7.338,
+  "missing_final_answers": 13,
+  "empty_steps": 0,
+  "avg_unique_answers_per_question": 1.991,
+  "sample_correctness_accuracy": 0.86,
+  "missing_label_placeholders": 0,
+  "verdict": "\u2705 PASS \u2014 Data ready for RM training"
+}

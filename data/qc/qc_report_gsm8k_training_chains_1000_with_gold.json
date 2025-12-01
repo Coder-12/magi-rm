@@ -1,0 +1,12 @@
+{
+  "file": "data/collected/gsm8k_training_chains_1000_with_gold.jsonl",
+  "timestamp": "2025-10-16T13:08:59.530055Z",
+  "avg_chains_per_question": 5.82429718875502,
+  "avg_steps_per_chain": 7.1098086536804,
+  "missing_final_answers": 0,
+  "empty_steps": 0,
+  "avg_unique_answers_per_question": 1.8895582329317269,
+  "sample_correctness_accuracy": 0.8644578313253012,
+  "missing_label_placeholders": 0,
+  "verdict": "\u26a0\ufe0f WARN \u2014 Usable but verify accuracy and regexes"
+}

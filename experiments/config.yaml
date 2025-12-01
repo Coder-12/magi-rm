@@ -1,0 +1,16 @@
+llm:
+  backend: openai
+  model: gpt-4o-mini
+
+solver_k: 6
+temperature: 0.7
+vote_threshold: 0.6      # more balanced, paper-like
+rm_softmax_temp: 1.0
+rm_conf_alpha: 5.0
+rm_conf_threshold: 0.5   # Condition 2 (sigmoid midpoint)
+#rm_threshold: 0.0   # keep for backward compat if used elsewhere
+rm_aggregation: mean # Aggregation for PRM step scores: 'mean' or 'product' for solution-level
+final_conf_threshold: 0.5 # higher bar to *stop* after refinement
+max_iterations: 3
+rm_mode: llm   # options: 'llm' or 'trained'
+rm_path: null

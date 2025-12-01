@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-10-16T12:52:02.186897+00:00",
+  "questions": 996,
+  "chains": 5801,
+  "valid_chains": 5801,
+  "missing_fields": 0,
+  "type_issues": 0,
+  "logical_issues": 0,
+  "prm_mean_avg": 0.9277670267827137,
+  "orm_ratio": {
+    "0.0": 5651,
+    "1.0": 150
+  },
+  "verdict": "\u2705 PASS \u2014 Dataset schema & label structure are fully valid for RM training"
+}

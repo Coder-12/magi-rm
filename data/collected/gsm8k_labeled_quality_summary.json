@@ -1,0 +1,28 @@
+{
+  "total_questions": 996,
+  "total_chains": 5801,
+  "orm_accuracy_pct": 100.0,
+  "prm_valid_pct": 26.39,
+  "heuristic_usage": {
+    "ok": 5801
+  },
+  "prm_mean_correct_chains": 0.93,
+  "prm_mean_incorrect_chains": 0.93,
+  "prm_avg_stdev": 0.48,
+  "prm_avg_entropy": 1.89,
+  "score_histogram": {
+    "0": 1036,
+    "1": 46,
+    "2": 146,
+    "3": 54,
+    "4": 77,
+    "5": 626,
+    "6": 364,
+    "7": 686,
+    "8": 5681,
+    "9": 1531,
+    "10": 30997
+  },
+  "flagged_count": 5179,
+  "tested_at": "2025-10-16T12:52:34.437049+00:00Z"
+}
