@@ -254,6 +254,7 @@ When breaking changes are introduced, detailed migration guides will be provided
 *(Will be provided when applicable)*
 
 ```python
+from src.models.dual_head_rm import DualHeadRM
 # Old API (deprecated)
 model = DualHeadRM(base_model="opt-1.3b", freeze_base=True)
 

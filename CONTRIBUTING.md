@@ -850,10 +850,10 @@ xdg-open _build/html/index.html  # Linux
 
 ### Getting Help
 
-- **Questions**: [GitHub Discussions - Q&A](https://github.com/yourusername/magi-rm/discussions/categories/q-a)
-- **Bugs**: [GitHub Issues](https://github.com/yourusername/magi-rm/issues)
-- **Security**: Email security@yourproject.com
-- **General**: [GitHub Discussions - General](https://github.com/yourusername/magi-rm/discussions/categories/general)
+- **Questions**: [GitHub Discussions - Q&A](https://github.com/Coder-12/magi-rm/discussions/categories/q-a)
+- **Bugs**: [GitHub Issues](https://github.com/Coder-12/magi-rm/issues)
+- **Security**: [Security Email](akleshmishra7@gmail.com)
+- **General**: [GitHub Discussions - General](https://github.com/Coder-12/magi-rm/discussions/categories/general)
 
 ### Communication Channels
 

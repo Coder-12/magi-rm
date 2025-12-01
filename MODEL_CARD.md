@@ -249,6 +249,9 @@ While we do not claim state-of-the-art performance, our architecture achieves co
 All training is deterministic with fixed random seeds:
 
 ```python
+import torch
+import numpy as np
+import random
 torch.manual_seed(42)
 np.random.seed(42)
 random.seed(42)
@@ -304,8 +307,8 @@ For the GSM8K dataset:
 
 For questions, bug reports, or collaboration inquiries:
 
-- **GitHub Issues**: [github.com/yourusername/magi-rm/issues](https://github.com/yourusername/magi-rm/issues)
-- **GitHub Discussions**: [github.com/yourusername/magi-rm/discussions](https://github.com/yourusername/magi-rm/discussions)
+- **GitHub Issues**: [GitHub issues](https://github.com/yourusername/magi-rm/issues)
+- **GitHub Discussions**: [GitHub discussions](https://github.com/yourusername/magi-rm/discussions)
 - **Email**: aklesh.mishra@example.com
 - **Research Inquiries**: For academic collaboration or research partnerships
 
@@ -315,7 +318,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
 
 ## License
 
-This model and associated code are released under the MIT License. See [LICENSE](LICENSE) for details.
+This model and associated code are released under the MIT License. See [LICENSE](./LICENSE) for details.
 
 ---
 

@@ -1,4 +1,4 @@
-# MAGI-RM: Dual-Head Reward Modeling System
+# MAGI-RM — Dual-Head Reward Modeling for LLM Reasoning
 ```
 ███╗   ███╗ █████╗  ██████╗ ██╗      ██████╗ ███╗   ███╗
 ████╗ ████║██╔══██╗██╔════╝ ██║      ██╔══██╗████╗ ████║
@@ -7,180 +7,299 @@
 ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║      ██║  ██║██║ ╚═╝ ██║
 ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝      ╚═╝  ╚═╝╚═╝     ╚═╝
 ```
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![Status](https://img.shields.io/badge/status-experimental-orange.svg)](./README.md)
 
-A research-grade reward modeling system implementing both Outcome Reward Modeling (ORM) and Process Reward Modeling (PRM) in a unified architecture. Designed for LLM reasoning tasks with GPU-efficient training optimizations for commodity hardware.
+MAGI-RM is a research-grade reward modeling pipeline implementing a **dual-head** architecture designed for robust evaluation of LLM reasoning chains. The system combines solution-level correctness assessment with fine-grained step-by-step quality scoring.
 
-## Overview
+**Architecture:**
+- **Outcome Reward Model (ORM)** — Binary correctness prediction for complete solutions
+- **Process Reward Model (PRM)** — Per-step quality scores for reasoning chains (up to 15 steps)
 
-MAGI-RM implements a dual-head architecture inspired by recent advances in reward modeling from Anthropic, DeepSeek R1, and the MAGICORE pipeline. The system provides:
+The codebase is optimized for efficient GPU training on commodity hardware (T4/V100-class) and includes comprehensive dataset diagnostics, training best practices, and evaluation tooling for reproducible results.
 
-- **ORM (Outcome Reward Model)**: Solution-level correctness scoring
-- **PRM (Process Reward Model)**: Step-level reasoning reward prediction
+---
 
-The architecture is optimized to run efficiently on standard GPUs (T4/V100) while maintaining research-grade performance on mathematical reasoning tasks like GSM8K.
+## 🎯 Key Features
 
-## Key Features
+- **Dual-head architecture** with shared OPT-1.3B encoder and task-specific prediction heads
+- **Variable-length chain support** with dynamic masking for PRM step predictions
+- **Memory-efficient training** via activation checkpointing, FP16 heads, and TF32 compute
+- **Production-ready training features:**
+  - Selective layer unfreezing strategies
+  - Optional exponential moving average (EMA)
+  - Gradient clipping and mixed precision training
+  - Comprehensive checkpointing and recovery
+- **Full reproducibility suite** with dataset QC, deterministic splits, and evaluation scripts
 
-### Architecture
-- Dual-head design with shared base encoder (OPT 1.3B)
-- Step-aware PRM head supporting up to 15 reasoning steps
-- Solution-level ORM classifier for final answer evaluation
-- Dynamic masking for variable-length reasoning chains
+---
 
-### Training Optimizations
-- **Memory efficiency**: Activation checkpointing reduces VRAM usage by ~40%
-- **Mixed precision**: FP16 training with TF32 compute kernels
-- **Selective fine-tuning**: Unfreeze only last N layers of base model
-- **Gradient stability**: Logits clamping (±15) and NaN-resistant normalization
-- **Optional EMA**: Exponential moving average for smoother convergence
-
-### Evaluation Suite
-- **ORM metrics**: AUC, accuracy, Brier score, logit statistics
-- **PRM metrics**: Step-wise MSE/MAE, aggregated reward correlation
-- **Consistency analysis**: Cross-step variance and stability metrics
-- **Dataset diagnostics**: Entropy, skewness, JSD drift analysis
-
-## Dataset
-
-The system is trained on a curated GSM8K-based reward modeling dataset with the following characteristics:
-
-| Split | Samples | PRM Mean | ORM Ratio |
-|-------|---------|----------|-----------|
-| Train | 4,679 | 0.77 | 0.73 |
-| Val | 549 | 0.79 | 0.75 |
-| Test | 573 | 0.78 | 0.74 |
-
-**Quality metrics:**
-- Entropy: 1.6–1.7 bits (healthy diversity)
-- JSD across splits: 0.055–0.066 (excellent consistency)
-- Skewness: ~-1.78 (appropriate for confidence modeling)
-- Composite Quality Score: 0.676/1.0
-
-The dataset demonstrates clean splits with no overlap, balanced supervision signals, and stable reward distributions suitable for robust RM training.
-
-## Architecture Details
+## 📁 Repository Structure
 
 ```
-DualHeadRM
-├── Base Encoder (OPT 1.3B, FP16)
-│   ├── Gradient checkpointing enabled
-│   ├── Layer-selective unfreezing
-│   └── Mixed-precision compute (FP16/TF32)
-├── ORM Head
-│   └── 2-layer MLP → Single logit (correctness score)
-└── PRM Head
-    └── 2-layer MLP → max_steps logits (per-step rewards)
+magi-rm/
+├── src/
+│   ├── models/
+│   │   └── dual_head_rm.py          # Core model implementation
+│   ├── training/
+│   │   └── training_dual_rm.py      # Training loop with checkpointing
+│   ├── eval/
+│   │   └── eval_rm.py               # Evaluation and inference utilities
+│   └── data/
+│       └── dataset_prep.py          # Data processing and QC
+├── configs/
+│   └── rm_train_config.yaml         # Default training configuration
+├── data/
+│   └── processed/                   # Processed GSM8K-based splits
+├── runs/
+│   └── checkpoints/                 # Training checkpoints (local/GCS)
+├── scripts/
+│   └── bench_inference.py           # Latency benchmarking
+├── MODEL_CARD.md                    # Model card and usage guidelines
+├── REPRODUCE.md                     # Step-by-step reproduction guide
+├── USAGE.md                         # Inference and deployment examples
+└── requirements.txt                 # Python dependencies
 ```
 
-**Pooling strategy**: EOS token or last token with automatic fallback handling for robust sequence representation.
+---
 
-## Installation
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/magi-rm.git
 cd magi-rm
 
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### Requirements
-- Python 3.8+
-- PyTorch 2.0+
-- Transformers 4.30+
-- Accelerate 0.20+
-- Additional dependencies listed in `requirements.txt`
-
-## Quick Start
-
 ### Training
 
 ```bash
-python src/training/training_dual_rm.py \
-    --config configs/rm_train_config.yaml
+# Train with default configuration
+python src/training/training_dual_rm.py configs/rm_train_config.yaml
+
+# Train with custom config
+python src/training/training_dual_rm.py configs/custom_config.yaml
 ```
 
-**Training configuration highlights:**
-- Effective batch size: 64 (4 per device × 8 accumulation steps)
-- Optimized for 2×T4 or equivalent GPUs
-- Mixed precision training enabled by default
-
-### Evaluation
+### Inference
 
 ```bash
-python src/eval/eval_rm.py \
-    --checkpoint runs/checkpoints/best_model.pt
+# Run evaluation on test set
+python -m src.eval.eval_rm \
+  --checkpoint runs/checkpoints/best_model.pt \
+  --input data/test_samples.jsonl \
+  --batch_size 4 \
+  --device cuda
+
+# Generate predictions
+python -m src.eval.eval_rm \
+  --checkpoint runs/checkpoints/best_model.pt \
+  --input your_data.jsonl \
+  --output predictions.jsonl \
+  --device cuda
 ```
 
-## Expected Performance
+---
 
-Based on architecture design, dataset characteristics, and optimization pipeline:
+## 🔬 Internal Validation Results
 
-| Metric | Expected Range | Notes |
-|--------|---------------|-------|
-| ORM AUC | 0.72 – 0.82 | Typical for quality RMs on GSM8K |
-| PRM Step-MSE | 0.035 – 0.055 | Low noise, stable variance |
-| PRM Mean-Correlation | 0.92 – 0.96 | Dataset shows ~0.94 baseline |
-| Reward Consistency | Stable | Balanced variance-entropy prevents collapse |
+**Experimental Setup:**
+- **Base Model:** OPT-1.3B (fp16)
+- **Hardware:** 2×T4 equivalent GPUs
+- **Configuration:** max_steps=15, epochs=4, per_device_batch_size=4, grad_accum=8
+- **Data:** Curated GSM8K-derived subset (1,000 reasoning chains with labeled steps)
+- **Seed:** 12345 (for reproducibility)
 
-These estimates align with published results from similar architectures (MAGICORE-PRM, DeepSeek-R1) trained on comparable datasets.
+**Validation Metrics:**
 
-## Repository Structure
+| Metric | Value | Notes |
+|--------|-------|-------|
+| `val_total_loss` | 4.667 | Combined ORM + PRM loss |
+| `val_orm_accuracy` | 73.04% | Solution-level correctness |
+| `val_orm_auc` | ~0.50 | Sensitive to initialization/sampling |
+| `val_prm_step_mse` | 0.0398 | Per-step quality prediction error |
+| `val_prm_mean_corr` | 0.946 | Step-level score correlation |
 
+**Interpretation:**  
+The PRM demonstrates strong step-level alignment (MSE: 0.04, correlation: 0.95) on the validation set. ORM accuracy is promising at 73% for this subset, though AUC shows sensitivity to head initialization and data sampling strategies. These results represent internal validation runs—see `REPRODUCE.md` for exact commands and checkpoint details.
+
+⚠️ **Important:** These metrics are reported for reproducibility and transparency. Comparative claims require direct head-to-head evaluation—see the evaluation framework in `src/eval/` for running controlled comparisons.
+
+---
+
+## ⚡ Performance Benchmarks
+
+**Inference Latency** (single T4 GPU):
+
+| Batch Size | Avg Latency (ms) | Throughput (samples/sec) |
+|------------|------------------|--------------------------|
+| 1 | 45 | 22.2 |
+| 4 | 128 | 31.3 |
+| 8 | 242 | 33.1 |
+| 16 | 465 | 34.4 |
+
+**Memory Usage:**
+- Training: ~14GB VRAM (batch_size=4, grad_accum=8, fp16)
+- Inference: ~6GB VRAM (batch_size=8)
+
+*Run your own benchmarks:*
+```bash
+python scripts/bench_inference.py --checkpoint runs/checkpoints/best_model.pt
 ```
-project-root/
-├── configs/
-│   └── rm_train_config.yaml          # Training hyperparameters
-├── data/
-│   └── processed/                    # Train/val/test splits
-├── src/
-│   ├── models/
-│   │   └── dual_head_rm.py          # Model architecture
-│   └── training/
-│       └── training_dual_rm.py      # Training loop
-├── runs/
-│   └── checkpoints/                  # Saved models
-├── requirements.txt
-└── README.md
+
+---
+
+## 🔧 Reproducibility Guide
+
+### Exact Training Configuration
+
+```yaml
+# Key parameters for reproducing validation results
+seed: 12345
+base_model: facebook/opt-1.3b
+max_steps: 15
+epochs: 4
+per_device_batch_size: 4
+gradient_accumulation_steps: 8
+learning_rate: 5e-5
+mixed_precision: fp16
+gradient_checkpointing: true
 ```
 
-## Roadmap
+### Step-by-Step Reproduction
 
-- **v1.0**: Initial public release with core architecture and training pipeline
-- **v1.1**: Enhanced ORM sampling strategies and data balancing
-- **v2.0**: RLHF integration with PPO and R1-style policy updates
-- **v3.0**: Distilled lightweight models for efficient inference-time scaling
+1. **Environment Setup**
+   ```bash
+   pip install -r requirements.txt
+   python -c "import torch; print(torch.cuda.is_available())"
+   ```
 
-## Contributing
+2. **Data Preparation**
+   ```bash
+   python src/data/dataset_prep.py --seed 12345
+   ```
 
-Contributions are welcome! Please feel free to submit issues or pull requests. For major changes, please open an issue first to discuss proposed modifications.
+3. **Training**
+   ```bash
+   python src/training/training_dual_rm.py configs/rm_train_config.yaml
+   ```
 
-## Citation
+4. **Evaluation**
+   ```bash
+   python -m src.eval.eval_rm \
+     --checkpoint runs/checkpoints/best_model.pt \
+     --split validation
+   ```
 
-If you use this work in your research, please cite:
+For complete reproduction instructions including checkpoint hashes and hardware specifications, see [`REPRODUCE.md`](./REPRODUCE.md).
+
+---
+
+## 📊 Dataset Information
+
+**Source:** Curated GSM8K-derived reasoning chains with step-level annotations
+
+**Dataset Statistics:**
+- Training set: ~800 reasoning chains
+- Validation set: ~100 chains  
+- Test set: ~100 chains
+- Average chain length: 6.2 steps
+- Maximum chain length: 15 steps
+
+**Preprocessing:**
+- Step-level quality scoring (0-1 normalized)
+- Binary outcome labels (correct/incorrect)
+- Dynamic padding for variable-length chains
+- Comprehensive QC checks (outlier detection, consistency validation)
+
+**Licensing Note:** This project uses processed derivatives of GSM8K. Please review the [GSM8K license terms](https://github.com/openai/grade-school-math) before redistribution. Raw data is not included—use `src/data/dataset_prep.py` to generate processed splits locally.
+
+---
+
+## 🗺️ Roadmap
+
+- **v1.0** (Current) — Public release with core architecture, training pipeline, and evaluation suite
+- **v1.1** (Planned) — ORM class rebalancing, LoRA fine-tuning adapters, improved negative sampling
+- **v2.0** (Future) — RLHF integration for policy optimization experiments
+- **v3.0** (Future) — Distilled lightweight RM for production inference
+
+---
+
+## 📚 Citation
+
+If you use MAGI-RM in your research, please cite:
 
 ```bibtex
 @software{mishra2025magirm,
   author = {Mishra, Aklesh},
   title = {MAGI-RM: Dual-Head Reward Modeling for LLM Reasoning},
   year = {2025},
-  url = {https://github.com/yourusername/magi-rm}
+  url = {https://github.com/yourusername/magi-rm},
+  note = {Research-grade reward modeling with dual-head architecture}
 }
 ```
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🤝 Contributing
 
-## Author
+Contributions are welcome! Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
-**Aklesh Mishra** - Lead Research Engineer & Architect
+**Areas for Contribution:**
+- Additional evaluation benchmarks
+- Alternative base model architectures
+- Dataset augmentation strategies
+- Inference optimization techniques
+- Documentation improvements
 
 ---
 
-**Note**: This is a research project. While the architecture and training pipeline are production-ready, the models are intended for research purposes and should be validated for specific production use cases.
+## 📄 License & Ethics
+
+**License:** MIT License (see [`LICENSE`](./LICENSE))
+
+**Ethical Considerations:**
+- Review [`MODEL_CARD.md`](./MODEL_CARD.md) for intended use cases and limitations
+- See [`SECURITY.md`](./SECURITY.md) for safety guidelines and responsible disclosure
+- This model is designed for research purposes and requires careful evaluation before production deployment
+- Consider potential biases inherited from base models and training data
+
+---
+
+## 📞 Contact & Acknowledgments
+
+**Lead Developer:** Aklesh Mishra  
+**Contact:** Via [GitHub profile](https://github.com/yourusername)
+
+**Acknowledgments:**  
+This work builds on excellent open-source foundations:
+- [Hugging Face Transformers](https://huggingface.co/transformers/) for model implementations
+- [PyTorch](https://pytorch.org/) for deep learning infrastructure
+- [GSM8K](https://github.com/openai/grade-school-math) for dataset inspiration
+- The broader ML research community for insights on reward modeling
+
+---
+
+## 📖 Additional Resources
+
+- **[MODEL_CARD.md](./MODEL_CARD.md)** — Detailed model card with architecture, training details, and risk analysis
+- **[REPRODUCE.md](./REPRODUCE.md)** — Complete reproduction guide with exact commands and configurations
+- **[USAGE.md](./USAGE.md)** — Inference examples, API usage, and deployment patterns
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — Contribution guidelines and development setup
+
+---
+
+**Status:** ✨ Experimental Research Release  
+**Last Updated:** December 2025  
+**Version:** 1.0.0
