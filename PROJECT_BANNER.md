@@ -483,10 +483,10 @@ If you use MAGI-RM in your research or applications, please cite:
 
 **Aklesh Mishra** - Lead Research Engineer & Architect
 
-- 📧 Email: aklesh.mishra@example.com
-- 💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
-- 🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)
+- 📧 Email: akleshmishra7@gmail.com
+- 💼 LinkedIn: [linkedin.com/in/akleshmishra](https://linkedin.com/in/akleshmishra)
+- 🐙 GitHub: [@Coder-12](https://github.com/Coder-12)
+- 🐦 Twitter: [@iminevitable10](https://twitter.com/iminevitable10)
 
 ### Get Support
 
