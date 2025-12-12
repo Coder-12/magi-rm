@@ -247,7 +247,7 @@ If you use MAGI-RM in your research, please cite:
   author = {Mishra, Aklesh},
   title = {MAGI-RM: Dual-Head Reward Modeling for LLM Reasoning},
   year = {2025},
-  url = {https://github.com/yourusername/magi-rm},
+  url = {https://github.com/Coder-12/magi-rm},
   note = {Research-grade reward modeling with dual-head architecture}
 }
 ```
