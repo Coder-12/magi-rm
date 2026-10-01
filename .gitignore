@@ -158,3 +158,11 @@ local_init.sh
 !artifacts/.gitkeep
 !backups/.gitkeep
 !journals/.gitkeep
+# ----------------------------------------------------------------------------
+# Credentials (added in repo-hygiene pass; never commit)
+# ----------------------------------------------------------------------------
+runs/drive-connect/
+*service-account*.json
+*-key.json
+*.pem
+*.p12
