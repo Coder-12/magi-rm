@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-11-06T04:18:35.459436+00:00",
+  "questions": 996,
+  "chains": 5801,
+  "missing_chain_labels": 0,
+  "missing_step_scores": 0,
+  "orm_distribution": {
+    "1": 4364,
+    "0": 1437
+  },
+  "prm_mean_summary": {
+    "mean": 0.7929008767351193,
+    "stdev": 0.18175752899150083,
+    "min": 0.0733131156453219,
+    "max": 0.9651444160536122
+  },
+  "prm_prod_summary": {
+    "mean": 0.3254660649368996,
+    "stdev": 0.23053238859069372,
+    "min": 1.064546120509345e-15,
+    "max": 0.8682552339707673
+  },
+  "corr_orm_prm": 0.7302600151126185,
+  "verdict": "\u2705 PASS \u2014 Labeled data ready for RM training"
+}

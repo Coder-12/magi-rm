@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-10-31T12:55:00.659395+00:00",
+  "modulus": 187,
+  "counts": {
+    "train": 4672,
+    "val": 622,
+    "test": 507
+  },
+  "orm_label_ratios": {
+    "train": 0.75,
+    "val": 0.797,
+    "test": 0.72
+  },
+  "prm_means": {
+    "train": 0.791,
+    "val": 0.815,
+    "test": 0.78
+  }
+}

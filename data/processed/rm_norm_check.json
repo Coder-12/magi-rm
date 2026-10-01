@@ -1,0 +1,54 @@
+{
+  "train": {
+    "PRM": {
+      "examples": 4679,
+      "total_values": 30401,
+      "mean": 0.7925699247300917,
+      "stdev": 0.2638053739542623,
+      "min": 0.023313115645321902,
+      "max": 1.0,
+      "out_of_range": 0
+    },
+    "ORM": {
+      "examples": 4679,
+      "label_1_ratio": 0.7544347082709981,
+      "invalid_labels": 0
+    }
+  },
+  "val": {
+    "PRM": {
+      "examples": 549,
+      "total_values": 3514,
+      "mean": 0.7765293581118085,
+      "stdev": 0.2802358282195161,
+      "min": 0.023313115645321902,
+      "max": 1.0,
+      "out_of_range": 0
+    },
+    "ORM": {
+      "examples": 549,
+      "label_1_ratio": 0.7304189435336976,
+      "invalid_labels": 0
+    }
+  },
+  "test": {
+    "PRM": {
+      "examples": 573,
+      "total_values": 3778,
+      "mean": 0.7720962971501277,
+      "stdev": 0.28012792059680086,
+      "min": 0.023313115645321902,
+      "max": 1.0,
+      "out_of_range": 0
+    },
+    "ORM": {
+      "examples": 573,
+      "label_1_ratio": 0.7556719022687609,
+      "invalid_labels": 0
+    }
+  },
+  "summary": {
+    "total_outliers": 0,
+    "verdict": "\u2705 PASS"
+  }
+}

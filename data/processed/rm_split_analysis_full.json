@@ -1,0 +1,21 @@
+{
+  "jsd": {
+    "train_val": 0.0572,
+    "train_test": 0.0552,
+    "val_test": 0.0662,
+    "average": 0.0595
+  },
+  "skewness": {
+    "train": -1.8299,
+    "val": -1.7382,
+    "test": -1.7780,
+    "average": -1.7820
+  },
+  "imbalance": {
+    "train": 0.2540,
+    "val": 0.2300,
+    "test": 0.2560,
+    "average": 0.2467
+  },
+  "composite_score": 0.676
+}

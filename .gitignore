@@ -1,0 +1,160 @@
+# ============================================================================
+# FAANG-Grade .gitignore for Deep Learning / RLHF / LLM Reward Modeling
+# Custom-tailored for Magi-RM (Aklesh Mishra)
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Python / Build / Packaging
+# ----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+*.egg-info/
+*.egg
+*.whl
+build/
+dist/
+
+# ----------------------------------------------------------------------------
+# Virtual Environments
+# ----------------------------------------------------------------------------
+.env
+.venv
+venv/
+
+# ----------------------------------------------------------------------------
+# Jupyter Notebooks
+# ----------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_convert/
+
+# ----------------------------------------------------------------------------
+# OS Generated Files
+# ----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------------------------------------------
+# IDE / Editors (PyCharm, VSCode, JetBrains)
+# ----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# ----------------------------------------------------------------------------
+# Logs / Debug / Profiling / Cache
+# ----------------------------------------------------------------------------
+*.log
+*.out
+*.err
+logs/
+debug/
+cache/
+tmp/
+temp/
+**/__tmp__/
+*.prof
+*.profile
+*.stats
+*.trace
+*.tmp
+*.bak
+
+# Lightning / WandB / MLFlow
+lightning_logs/
+wandb/
+mlruns/
+
+# ----------------------------------------------------------------------------
+# HuggingFace / LLM Cache / Tokenizer Artifacts
+# ----------------------------------------------------------------------------
+.huggingface/
+transformers_cache/
+**/tokenizer.cache
+**/tokenizer.model
+**/tokenizer.json.bak
+**/.cache/
+
+# ----------------------------------------------------------------------------
+# Model Weights / Checkpoints (NEVER version control)
+# ----------------------------------------------------------------------------
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+checkpoints/
+checkpoints_*/
+runs/**/checkpoints/
+runs/**/*.pt
+runs/**/*.bin
+runs/**/*.ckpt
+runs/**/*.safetensors
+runs/**/events.out.tfevents.*
+
+# ----------------------------------------------------------------------------
+# Kaggle / GCP Credentials
+# ----------------------------------------------------------------------------
+kaggle.json
+gcloud-service-key.json
+gcs_token.json
+
+# ----------------------------------------------------------------------------
+# Data (Large Raw Files)
+# Keep ONLY cleaned + processed small JSONL.
+# ----------------------------------------------------------------------------
+data/**/*.tar.gz
+data/**/*.zip
+data/**/*.tgz
+data/**/*.gz
+data/**/raw/
+data/**/tmp/
+data/**/cache/
+data/**/intermediate/
+data/**/large/
+data/**/backup/
+
+# specifically ignore raw GSM8K or LLM dumps
+data/collected/*.tar
+data/collected/*.gz
+data/collected/*.zip
+data/collected/*_raw*
+data/splits/*.tmp
+
+# block image plot artifacts
+data/**/**/*.png
+data/**/**/*.jpg
+
+# ----------------------------------------------------------------------------
+# Run Artifacts (Keep metrics.jsonl & config.json, ignore large logs)
+# ----------------------------------------------------------------------------
+runs/**/tensorboard/
+runs/**/step_plot.png
+runs/**/grad_norms.png
+
+# ----------------------------------------------------------------------------
+# Docs / Build Artifacts
+# ----------------------------------------------------------------------------
+_site/
+docs/build/
+docs/source/_build/
+
+# ----------------------------------------------------------------------------
+# Project-Specific Exclusions (Safe to ignore)
+# ----------------------------------------------------------------------------
+galactica-6.7b-local
+verify_scripts/
+demo-repo/
+DEMO_README.md
+binary.bin
+big_manual.txt
+review.json
+review_out.json
+local_init.sh
+
+# KEEP clean folders with .gitkeep
+!artifacts/.gitkeep
+!backups/.gitkeep
+!journals/.gitkeep

@@ -1,0 +1,24 @@
+# Normalize all text files to LF
+* text=auto eol=lf
+
+# Make Jupyter notebooks render nicely
+*.ipynb linguist-detectable=true
+
+# Force documentation to count as documentation
+*.md linguist-documentation=true
+
+# Mark big data as non-diffable
+data/** binary
+*.pt binary
+*.bin binary
+*.tar.gz binary
+*.zip binary
+*.safetensors binary
+
+# Avoid blaming minified JS/CSS (not needed now, but FAANG repos include it)
+*.min.js linguist-generated=true
+*.min.css linguist-generated=true
+
+# Ignore irrelevant IDE files
+.idea/** linguist-vendored=true
+.vscode/** linguist-vendored=true

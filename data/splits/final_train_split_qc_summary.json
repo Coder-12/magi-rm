@@ -1,0 +1,11 @@
+{
+  "total_questions": 796,
+  "total_chains": 5447,
+  "missing_fields": 0,
+  "ORM_1_ratio": 0.68,
+  "PRM_mean_avg": 0.698,
+  "PRM_stdev_avg": 0.191,
+  "PRM_variance": 0.253,
+  "PRM_entropy": 2.163,
+  "timestamp": "2025-10-17T06:08:13.609295+00:00"
+}

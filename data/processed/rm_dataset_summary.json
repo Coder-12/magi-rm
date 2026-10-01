@@ -1,0 +1,125 @@
+{
+  "timestamp": "2025-11-01T08:24:27.211746+00:00",
+  "split_integrity": {
+    "timestamp": "2025-10-31T13:13:31.337686+00:00",
+    "overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "prm": {
+      "train": {
+        "num_records": 4679,
+        "mean": 0.7955280417661408,
+        "stdev": 0.17852893958506466,
+        "entropy": 1.6124989271995878
+      },
+      "val": {
+        "num_records": 549,
+        "mean": 0.78246932696138,
+        "stdev": 0.19134406111725255,
+        "entropy": 1.6909141685440652
+      },
+      "test": {
+        "num_records": 573,
+        "mean": 0.7814426143365746,
+        "stdev": 0.1968702262847663,
+        "entropy": 1.642757667002725
+      }
+    },
+    "orm": {
+      "train": {
+        "num_records": 4679,
+        "ratio": 0.7544347082709981
+      },
+      "val": {
+        "num_records": 549,
+        "ratio": 0.7304189435336976
+      },
+      "test": {
+        "num_records": 573,
+        "ratio": 0.7556719022687609
+      }
+    },
+    "similarity_stats": {
+      "train_val": {
+        "pearson": 0.996,
+        "ks_pvalue": 0.2339
+      },
+      "train_test": {
+        "pearson": 0.9942,
+        "ks_pvalue": 0.3499
+      },
+      "val_test": {
+        "pearson": 0.987,
+        "ks_pvalue": 0.7493
+      }
+    },
+    "integrity_pass": true
+  },
+  "normalization_check": {
+    "train": {
+      "PRM": {
+        "examples": 4679,
+        "total_values": 30401,
+        "mean": 0.7925699247300917,
+        "stdev": 0.2638053739542623,
+        "min": 0.023313115645321902,
+        "max": 1.0,
+        "out_of_range": 0
+      },
+      "ORM": {
+        "examples": 4679,
+        "label_1_ratio": 0.7544347082709981,
+        "invalid_labels": 0
+      }
+    },
+    "val": {
+      "PRM": {
+        "examples": 549,
+        "total_values": 3514,
+        "mean": 0.7765293581118085,
+        "stdev": 0.2802358282195161,
+        "min": 0.023313115645321902,
+        "max": 1.0,
+        "out_of_range": 0
+      },
+      "ORM": {
+        "examples": 549,
+        "label_1_ratio": 0.7304189435336976,
+        "invalid_labels": 0
+      }
+    },
+    "test": {
+      "PRM": {
+        "examples": 573,
+        "total_values": 3778,
+        "mean": 0.7720962971501277,
+        "stdev": 0.28012792059680086,
+        "min": 0.023313115645321902,
+        "max": 1.0,
+        "out_of_range": 0
+      },
+      "ORM": {
+        "examples": 573,
+        "label_1_ratio": 0.7556719022687609,
+        "invalid_labels": 0
+      }
+    },
+    "summary": {
+      "total_outliers": 0,
+      "verdict": "\u2705 PASS"
+    }
+  },
+  "summary": {
+    "num_train_examples": 4679,
+    "num_val_examples": 549,
+    "num_test_examples": 573,
+    "train_mean_prm": 0.7925699247300917,
+    "val_mean_prm": 0.7765293581118085,
+    "test_mean_prm": 0.7720962971501277,
+    "train_label_ratio": 0.7544347082709981,
+    "val_label_ratio": 0.7304189435336976,
+    "test_label_ratio": 0.7556719022687609
+  }
+}
